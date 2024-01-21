@@ -1,0 +1,149 @@
+MDScreen:
+    name:'login'
+    MDFloatLayout:
+        md_bg_color:1,1,1,1
+        MDIconButton:
+            icon: "arrow-left"
+            pos_hint: {'center_y':.95}
+            user_font_size:'30sp'
+            theme_text_color: "Custom"
+            text_color: rgba(26,24,58,255)
+            on_release:
+                root.manager.transition.d4="right"
+                root.manager.current="choose"
+        MDLabel:
+            text:"Welcome !"
+            font_name: 'BPoppins'
+            font_size: "26sp"
+            pos_hint:{"center_x":.6,"center_y":.85}
+            
+            color: rgba(0,0,59,255)
+
+
+        MDLabel:
+            text:"Sign in to continue"
+            font_name: 'MPoppins'
+            font_size: "18sp"
+            pos_hint:{"center_x":.6 ,"center_y":.79}
+            color: rgba(135,133,193,255)
+
+        MDGridLayout:
+            pos_hint: {'center_x': .5, 'center_y': .20}
+            spacing: '30dp'
+            cols: 1
+            rows: 2
+
+            MDTextField:
+                id: email_field
+                mode: "round"
+                size_hint: None, None
+                width: 390
+                hint_text: "Email"
+                required: True
+                helper_text_mode: "persistent"
+                helper_text: "Enter Email"
+                font_size: "20sp"
+                cursor_width: "2sp"
+                multiline: False
+                validator: "email"
+                icon_right: "email"
+
+            MDTextField:
+                id: password_field
+                size_hint: None, None
+                width: 390
+                mode: "round"
+                hint_text: "Password"
+                required: True
+                helper_text_mode: "persistent"
+                helper_text: "Enter Password"
+                font_size: "20sp"
+                cursor_width: "2sp"
+                multiline: False
+                password: True
+
+       
+
+
+        MDRaisedButton:
+            text: "L O G I N"
+            md_bg_color: "blue"
+            font_name:'BPoppins'
+            font_size: "20sp"
+            pos_hint: {'center_x':.5,'center_y':.34}
+            size_hint_x: .7
+            on_release: app.login(email_field.text, password_field.text)
+        MDTextButton:
+            text: 'Forgot Password?'
+            pos_hint: {'center_x':.5 , 'center_y':.28}
+            md_bg_color: "white"
+            font_name:'BPoppins'
+            font_size: "15sp"
+
+        MDLabel:
+            text:'or'
+
+            pos_hint: { 'center_y':.22}
+            halign: "center"
+            theme_text_color: "Custom"
+            text_color: .01, 0, 1, 1
+            font_name:'BPoppins'
+            font_size: "15sp"
+
+        MDFloatLayout:
+            md_bg_color: rgba(178, 178,178,255)
+            size_hint: .3,.002
+            pos_hint: {'center_x':.3 , 'center_y':.218}
+
+        MDFloatLayout:
+            md_bg_color: rgba(178, 178,178,255)
+            size_hint: .3,.002
+            pos_hint: {'center_x':.7 , 'center_y':.218}
+        
+        MDLabel:
+            text:'Social Media Login'
+            font_name: "BPoppins"
+            font_size: "13sp"
+            halign:'center'
+            pos_hint: { 'center_y':.16}
+            color: rgba(135,133,193,255)
+
+
+
+        MDGridLayout:
+            cols: 3
+            size_hint: .48, .07
+            pos_hint: {'center_x': .5, 'center_y': .1}
+
+            MDIconButton:
+                icon: 'img/google.png'  # قم بتحديد الرمز المناسب لزر Google
+                on_release: app.login_with_oauth('google')
+
+            MDIconButton:
+                icon: 'img/facebook.png'  # قم بتحديد الرمز المناسب لزر Facebook
+                on_release: app.login_with_oauth('facebook')
+
+            MDIconButton:
+                icon: 'img/apple.png'  # قم بتحديد الرمز المناسب لزر Apple
+                on_release: app.login_with_oauth('apple')
+        
+        MDLabel:
+            text:' Dont not hava an account ?'
+            font_name: "BPoppins"
+            font_size:'11sp'
+            pos_hint: {'center_x':.68 , 'center_y':.04}
+            color: rgba(135,133,193,255)
+
+        MDTextButton:
+            text:' Sign up'
+            font_name: "BPoppins"
+            font_size:'13sp'
+            pos_hint: {'center_x':.84 , 'center_y':.04}
+            color: .01,0,1,1
+            on_release:
+                root.manager.transition.direction="left"
+                root.manager.current="signup"
+
+
+
+           

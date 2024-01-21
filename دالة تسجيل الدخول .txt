@@ -1,0 +1,37 @@
+
+
+CLIENT_ID = 'YOUR_CLIENT_ID'
+CLIENT_SECRET = 'YOUR_CLIENT_SECRET'
+REDIRECT_URI = 'YOUR_REDIRECT_URI'
+AUTHORIZATION_BASE_URL = 'https://accounts.google.com/o/oauth2/auth'
+TOKEN_URL = 'https://accounts.google.com/o/oauth2/token'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def login_with_oauth(self, provider):
+        # إنشاء جلسة OAuth2
+        oauth = OAuth2Session(CLIENT_ID, redirect_uri=REDIRECT_URI, scope=['openid', 'email', 'profile'])
+
+        # إنشاء الرابط لتسجيل الدخول
+        authorization_url, state = oauth.authorization_url(AUTHORIZATION_BASE_URL)
+
+        print(f'Please go to {authorization_url}')
+
+        # الحصول على رمز التفويض بعد تسجيل الدخول
+        redirect_response = input('Paste the full redirect URL here: ')
+        token = oauth.fetch_token(TOKEN_URL, authorization_response=redirect_response, client_secret=CLIENT_SECRET)
+
+        # يمكنك هنا استخدام الـ token للتفاعل مع مزود الهوية المختار (Google أو Facebook أو Apple)
+        print(f'Successfully logged in with {provider}. Access Token: {token}')
